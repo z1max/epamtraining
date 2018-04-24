@@ -54,7 +54,7 @@ public class Jewel {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Jewel{");
+        final StringBuilder sb = new StringBuilder(this.getClass().getName() + "{");
         sb.append("name='").append(name).append('\'');
         sb.append(", weight=").append(weight);
         sb.append(", price=").append(price);

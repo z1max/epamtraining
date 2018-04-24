@@ -34,7 +34,7 @@ public class Necklace {
 
     @Override
     public String toString() {
-        return "Necklace{ jewels=" + jewels + '}';
+        return this.getClass().getName() + "{jewels=" + jewels + '}';
     }
 
     @Override
