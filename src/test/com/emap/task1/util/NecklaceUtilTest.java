@@ -16,6 +16,7 @@ import static org.junit.Assert.assertThat;
 public class NecklaceUtilTest {
 
     private Necklace necklace;
+    private NecklaceUtil necklaceUtil;
 
     @Before
     public void setUp() throws Exception {
@@ -23,21 +24,24 @@ public class NecklaceUtilTest {
                 new Jewel("Diamond", 0.5, 100000, 2.418),
                 new Jewel("Amethyst", 0.7, 60000, 1.543),
                 new Jewel("Aquamarine", 0.4, 70000, 1.564));
+        necklaceUtil = new NecklaceUtil();
+        necklaceUtil.setNecklace(necklace);
     }
 
     @After
     public void tearDown() throws Exception {
         necklace = null;
+        necklaceUtil = null;
     }
 
     @Test
     public void summaryWeight() {
-        assertThat(NecklaceUtil.summaryWeight(necklace), equalTo(1.6));
+        assertThat(necklaceUtil.summaryWeight(), equalTo(1.6));
     }
 
     @Test
     public void summaryPrice() {
-        assertThat(NecklaceUtil.summaryPrice(necklace), equalTo(230000L));
+        assertThat(necklaceUtil.summaryPrice(), equalTo(230000L));
     }
 
     @Test
@@ -46,7 +50,7 @@ public class NecklaceUtilTest {
                 new Jewel("Amethyst", 0.7, 60000, 1.543),
                 new Jewel("Aquamarine", 0.4, 70000, 1.564),
                 new Jewel("Diamond", 0.5, 100000, 2.418));
-        NecklaceUtil.sortByPrice(necklace);
+        necklaceUtil.sortByPrice();
         assertThat(necklace, equalTo(sorted));
     }
 
@@ -56,6 +60,6 @@ public class NecklaceUtilTest {
         expected.add( new Jewel("Amethyst", 0.7, 60000, 1.543));
         expected.add(new Jewel("Aquamarine", 0.4, 70000, 1.564));
 
-        assertThat(NecklaceUtil.findByRefractiveIndexBetween(necklace, 1.3, 1.6), equalTo(expected));
+        assertThat(necklaceUtil.findByRefractiveIndexBetween(1.3, 1.6), equalTo(expected));
     }
 }

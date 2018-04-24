@@ -3,34 +3,53 @@ package main.com.epam.task1.util;
 import main.com.epam.task1.model.Jewel;
 import main.com.epam.task1.model.Necklace;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class NecklaceUtil {
 
-    private NecklaceUtil(){}
+    private Necklace necklace;
 
-    public static double summaryWeight(Necklace necklace){
-        return necklace.getJewels().stream()
-                .mapToDouble(Jewel::getWeight)
-                .sum();
+    public NecklaceUtil(){}
+
+    public void setNecklace(Necklace necklace) {
+        this.necklace = necklace;
+    }
+
+    public double summaryWeight(){
+        double summaryWeight = 0;
+        for(Jewel jewel : necklace.getJewels()){
+            summaryWeight += jewel.getWeight();
+        }
+        return summaryWeight;
     }
 
 
-    public static long summaryPrice(Necklace necklace){
-        return necklace.getJewels().stream()
-                .mapToLong(Jewel::getPrice)
-                .sum();
+    public long summaryPrice(){
+        long summaryPrice = 0;
+        for (Jewel jewel : necklace.getJewels()){
+            summaryPrice += jewel.getPrice();
+        }
+        return summaryPrice;
     }
 
-    public static void sortByPrice(Necklace necklace){
-        necklace.getJewels().sort(Comparator.comparing(Jewel::getPrice));
+    public void sortByPrice(){
+        necklace.getJewels().sort(new Comparator<Jewel>() {
+            @Override
+            public int compare(Jewel o1, Jewel o2) {
+                return Long.compare(o1.getPrice(), o2.getPrice());
+            }
+        });
     }
 
-    public static List<Jewel> findByRefractiveIndexBetween(Necklace necklace, double from, double to){
-        return necklace.getJewels().stream()
-                .filter(jewel -> jewel.getRefractiveIndex() >= from && jewel.getRefractiveIndex() <= to)
-                .collect(Collectors.toList());
+    public List<Jewel> findByRefractiveIndexBetween(double from, double to){
+        List<Jewel> result = new ArrayList<>();
+        for (Jewel jewel : necklace.getJewels()){
+           if (jewel.getRefractiveIndex() >= from && jewel.getRefractiveIndex() <= to) {
+               result.add(jewel);
+           }
+        }
+        return result;
     }
 }
