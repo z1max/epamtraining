@@ -1,4 +1,4 @@
-package main.com.epam.task1.Runner;
+package main.com.epam.task1.runner;
 
 import main.com.epam.task1.model.Jewel;
 import main.com.epam.task1.model.Necklace;
