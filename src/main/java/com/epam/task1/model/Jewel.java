@@ -1,4 +1,4 @@
-package main.com.epam.task1.model;
+package com.epam.task1.model;
 
 import java.util.Objects;
 

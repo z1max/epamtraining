@@ -1,4 +1,4 @@
-package main.com.epam.task1.util;
+package com.epam.task1.util;
 
 public class PriceUtil {
 

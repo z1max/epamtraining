@@ -1,7 +1,7 @@
-package main.com.epam.task1.util;
+package com.epam.task1.util;
 
-import main.com.epam.task1.model.Jewel;
-import main.com.epam.task1.model.Necklace;
+import com.epam.task1.model.Jewel;
+import com.epam.task1.model.Necklace;
 
 import java.util.ArrayList;
 import java.util.Comparator;

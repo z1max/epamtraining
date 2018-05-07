@@ -1,6 +1,6 @@
-package test.com.emap.task1.util;
+package com.emap.task1.util;
 
-import main.com.epam.task1.util.PriceUtil;
+import com.epam.task1.util.PriceUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class PriceUtilTest {
 

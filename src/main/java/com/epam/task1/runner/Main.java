@@ -1,9 +1,9 @@
-package main.com.epam.task1.runner;
+package com.epam.task1.runner;
 
-import main.com.epam.task1.model.Jewel;
-import main.com.epam.task1.model.Necklace;
-import main.com.epam.task1.util.NecklaceUtil;
-import main.com.epam.task1.util.PriceUtil;
+import com.epam.task1.model.Jewel;
+import com.epam.task1.model.Necklace;
+import com.epam.task1.util.NecklaceUtil;
+import com.epam.task1.util.PriceUtil;
 
 import java.util.InputMismatchException;
 import java.util.List;
