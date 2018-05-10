@@ -1,7 +1,5 @@
 package com.epam.task1.model;
 
-import java.util.Objects;
-
 public class Jewel {
 
     private String name;
@@ -68,14 +66,19 @@ public class Jewel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Jewel jewel = (Jewel) o;
-        return Double.compare(jewel.weight, weight) == 0 &&
+        return name.equals(jewel.name) &&
+                Double.compare(jewel.weight, weight) == 0 &&
                 price == jewel.price &&
-                Double.compare(jewel.refractiveIndex, refractiveIndex) == 0 &&
-                Objects.equals(name, jewel.name);
+                Double.compare(jewel.refractiveIndex, refractiveIndex) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, weight, price, refractiveIndex);
+        int hash = 7;
+        hash = 31 * hash + (name == null ? 0 : name.hashCode());
+        hash = 31 * hash + Double.hashCode(weight);
+        hash = 31 * hash + Long.hashCode(price);
+        hash = 31 * hash + Double.hashCode(refractiveIndex);
+        return hash;
     }
 }
