@@ -21,6 +21,7 @@ public class NecklaceUtilTest {
     @Before
     public void setUp() throws Exception {
         necklace = new Necklace(
+                "Test",
                 new Jewel("Diamond", 0.5, 100000, 2.418),
                 new Jewel("Amethyst", 0.7, 60000, 1.543),
                 new Jewel("Aquamarine", 0.4, 70000, 1.564));
@@ -47,6 +48,7 @@ public class NecklaceUtilTest {
     @Test
     public void sortByPrice() {
         Necklace sorted = new Necklace(
+                "Test",
                 new Jewel("Amethyst", 0.7, 60000, 1.543),
                 new Jewel("Aquamarine", 0.4, 70000, 1.564),
                 new Jewel("Diamond", 0.5, 100000, 2.418));
