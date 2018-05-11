@@ -7,5 +7,6 @@ public enum Menu {
     WEIGHT,
     SORT,
     ADD,
-    FIND
+    FIND,
+    CREATE,
 }

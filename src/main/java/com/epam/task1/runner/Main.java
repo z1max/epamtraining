@@ -4,6 +4,7 @@ import com.epam.task1.model.Jewel;
 import com.epam.task1.model.Necklace;
 import com.epam.task1.util.NecklaceUtil;
 import com.epam.task1.util.PriceUtil;
+import org.apache.log4j.Logger;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -11,84 +12,96 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static final Logger log = Logger.getLogger(Main.class);
+
+    private static final String HELP = "\nType 'create' to create new necklace;\n" +
+                                        "\t 'list' to print all jewels in necklace;\n" +
+                                        "\t 'add' to add new jewel to necklace;\n" +
+                                        "\t 'price' to print summary price of necklace;\n" +
+                                        "\t 'weight' to print summary weight of necklace;\n" +
+                                        "\t 'sort' to sort jewels by price and print them;\n" +
+                                        "\t 'find' to find jewels by refractive index;\n" +
+                                        "\t 'help' to show available commands;\n" +
+                                        "\t 'exit' to quit.\n";
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner mainScanner = new Scanner(System.in);
+        Scanner additionalScanner = new Scanner(System.in);
         String inputLine;
 
-        Necklace necklace = new Necklace();
+        Necklace necklace = null;
         NecklaceUtil necklaceUtil = new NecklaceUtil();
-        necklaceUtil.setNecklace(necklace);
 
         showHelp();
-        separatorLine();
-        System.out.println("Waiting for user input...");
+        log.info("Waiting for user input...");
 
-        while (!(inputLine = scanner.nextLine()).equals("exit")) {
-
+        while (!(inputLine = mainScanner.nextLine()).equals("exit")) {
+            log.debug("User input - " + inputLine);
             try {
                 Menu userIn = Menu.valueOf(inputLine.trim().toUpperCase());
 
+                if (userIn == Menu.CREATE){
+                        log.info("Enter name for new necklace:");
+                        String name = additionalScanner.nextLine();
+
+                        necklace = new Necklace(name);
+                        necklaceUtil.setNecklace(necklace);
+
+                        log.info("Necklace '" + name + "' created.");
+                }
                 if (userIn == Menu.HELP) {
                     showHelp();
-                    separatorLine();
                 }
                 if (userIn == Menu.LIST) {
-                    printJewels(necklace);
-                    separatorLine();
+                    printJewels(necklace.getJewels(), "Necklace has no jewels yet");
                 }
                 if (userIn == Menu.PRICE) {
-                    System.out.println("Summary price is "
+                    log.info("Summary price is "
                             + PriceUtil.centsToDollars(necklaceUtil.summaryPrice()) + "$");
-                    separatorLine();
                 }
                 if (userIn == Menu.WEIGHT) {
-                    System.out.println("Summary weight is " + necklaceUtil.summaryWeight() + " ct");
-                    separatorLine();
+                    log.info("Summary weight is " + necklaceUtil.summaryWeight() + " ct");
                 }
                 if (userIn == Menu.SORT) {
                     necklaceUtil.sortByPrice();
-                    System.out.println("Jewels sorted by price:");
-                    printJewels(necklace);
-                    separatorLine();
+                    log.info("Jewels sorted by price:");
+                    printJewels(necklace.getJewels(), "Necklace has no jewels.");
                 }
                 if (userIn == Menu.ADD) {
                     try {
-                        System.out.println("Type name and press enter:");
-                        String name = scanner.nextLine();
+                        log.info("Type name and press enter:");
+                        String name = additionalScanner.nextLine();
 
-                        System.out.println("Type weight and press enter:");
-                        double weight = scanner.nextDouble();
+                        log.info("Type weight and press enter:");
+                        double weight = additionalScanner.nextDouble();
 
-                        System.out.println("Type price in $ and press enter:");
-                        long price = PriceUtil.dollarsToCents(scanner.nextDouble());
+                        log.info("Type price in $ and press enter:");
+                        long price = PriceUtil.dollarsToCents(additionalScanner.nextDouble());
 
-                        System.out.println("Type refractive index and type enter:");
-                        double refractiveIndex = scanner.nextDouble();
+                        log.info("Type refractive index and type enter:");
+                        double refractiveIndex = additionalScanner.nextDouble();
                         add(name, weight, price, refractiveIndex, necklace);
                     } catch (InputMismatchException ex) {
-                        System.out.println("Input data is incorrect!");
-                        separatorLine();
+                        log.error("Input data is incorrect!", ex);
                     }
                 }
                 if (userIn == Menu.FIND) {
                     try {
-                        System.out.println("Type refractive index from value:");
-                        double from = scanner.nextDouble();
+                        log.info("Type refractive index from value:");
+                        double from = additionalScanner.nextDouble();
 
-                        System.out.println("Type refractive index to value:");
-                        double to = scanner.nextDouble();
+                        log.info("Type refractive index to value:");
+                        double to = additionalScanner.nextDouble();
                         find(from, to, necklaceUtil);
                     } catch (InputMismatchException ex) {
-                        System.out.println("Input data is incorrect!");
-                        separatorLine();
+                        log.error("Input data is incorrect!", ex);
                     }
                 }
             } catch (IllegalArgumentException ex){
-                System.out.println("Input data is incorrect!");
-                separatorLine();
+                log.error("Input data is incorrect!", ex);
             }
 
-            System.out.println("Waiting for user input...");
+            log.info("Waiting for user input...");
         }
     }
 
@@ -96,46 +109,29 @@ public class Main {
         Jewel jewel = new Jewel(name, weight, price, refractiveIndex);
         necklace.addJewel(jewel);
 
-        System.out.println(jewel + " successfully added.");
-        separatorLine();
+        log.info(jewel + " successfully added.");
     }
 
     private static void find(double from, double to, NecklaceUtil necklaceUtil) {
-
         List<Jewel> result = necklaceUtil.findByRefractiveIndexBetween(from, to);
-
-        if (result.size() != 0) {
-            result.forEach(System.out::println);
-        } else {
-            System.out.println("Necklace has no jewels with refractive index between " + from + " and " + to);
-        }
-        separatorLine();
-
+        printJewels(result, "Necklace has no jewels with refractive index between " + from + " and " + to);
     }
 
-    private static void printJewels(Necklace necklace) {
-        if (necklace.getJewels().size() != 0) {
-            for (Jewel jewel : necklace.getJewels()) {
-                System.out.println(jewel);
+    private static void printJewels(List<Jewel> jewels, String messageIfEmpty) {
+        StringBuilder sb = new StringBuilder("\n");
+        if (jewels.size() != 0) {
+            for (Jewel jewel : jewels) {
+                sb.append(jewel);
+                sb.append("\n");
             }
         } else {
-            System.out.println("Necklace has no jewels yet.");
+            sb.append(messageIfEmpty);
+            sb.append("\n");
         }
+        log.info(sb);
     }
 
     private static void showHelp() {
-        System.out.println("Type 'list' to print all jewels in necklace;");
-        System.out.println("\t 'add' to add new jewel to necklace;");
-        System.out.println("\t 'price' to print summary price of necklace;");
-        System.out.println("\t 'weight' to print summary weight of necklace;");
-        System.out.println("\t 'sort' to sort jewels by price and print them;");
-        System.out.println("\t 'find' to find jewels by refractive index;");
-        System.out.println("\t 'help' to show available commands;");
-        System.out.println("\t 'exit' to quit.");
+        log.info(HELP);
     }
-
-    private static void separatorLine() {
-        System.out.println("------------------------------------\n");
-    }
-
 }
