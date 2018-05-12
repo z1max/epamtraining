@@ -1,5 +1,18 @@
 package com.epam.task1.model;
 
+/**
+ * The {@code Jewel} class represent a jewel.
+ *
+ * Contains following fields:
+ * <i>name<i/> - the name of jewel, type {@code String},
+ * <i>weight<i/> - the weight of jewel in carats, type {@code double},
+ * <i>price<i/> - the price of jewel in cents, type {@code long},
+ * <i>refractiveIndex<i/> - the refractive index of jewel, type {@code double}.
+ *
+ * In addition, contains constructor, getters and setters,
+ * overrides toString, equals and hashCode methods.
+ */
+
 public class Jewel {
 
     private String name;
@@ -74,11 +87,14 @@ public class Jewel {
 
     @Override
     public int hashCode() {
+        long weightBits = Double.doubleToLongBits(weight);
+        long refractiveIndexBits = Double.doubleToLongBits(refractiveIndex);
+
         int hash = 7;
         hash = 31 * hash + (name == null ? 0 : name.hashCode());
-        hash = 31 * hash + Double.hashCode(weight);
-        hash = 31 * hash + Long.hashCode(price);
-        hash = 31 * hash + Double.hashCode(refractiveIndex);
+        hash = 31 * hash + (int)(weightBits ^ (weightBits >>> 32));
+        hash = 31 * hash + (int)(price ^ (price >>> 32));
+        hash = 31 * hash + (int)(refractiveIndexBits ^ (refractiveIndexBits >>> 32));
         return hash;
     }
 }
