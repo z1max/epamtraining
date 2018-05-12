@@ -29,7 +29,7 @@ public class Main {
         Scanner additionalScanner = new Scanner(System.in);
         String inputLine;
 
-        Necklace necklace = null;
+        Necklace necklace = new Necklace();
         NecklaceUtil necklaceUtil = new NecklaceUtil();
 
         showHelp();
