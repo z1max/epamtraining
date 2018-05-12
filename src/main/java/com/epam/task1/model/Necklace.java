@@ -2,6 +2,18 @@ package com.epam.task1.model;
 
 import java.util.*;
 
+/**
+ * The {@code Necklace} class represents necklace
+ * that has name and list of jewels.
+ *
+ * Contains following fields:
+ * <i>name<i/> - the name of necklace, type {@code String},
+ * <i>jewels<i/> - list of jewels, type {@code List<Jewel>}.
+ *
+ * In addition, contains constructor, getters and setters,
+ * overrides toString, equals and hashCode methods.
+ */
+
 public class Necklace {
     private String name;
 
@@ -44,7 +56,7 @@ public class Necklace {
 
     @Override
     public String toString() {
-        return this.getClass().getName() + "{name=" + name + "jewels=" + jewels + '}';
+        return this.getClass().getName() + "{name='" + name + "', jewels=" + jewels + '}';
     }
 
     @Override
