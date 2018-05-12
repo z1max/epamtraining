@@ -19,6 +19,11 @@ public class Necklace {
 
     private List<Jewel> jewels;
 
+    public Necklace(){
+        this.name = "";
+        this.jewels = new ArrayList<>();
+    }
+
     public Necklace(String name){
         this.name = name;
         this.jewels = new ArrayList<>();
