@@ -5,9 +5,8 @@ import org.apache.log4j.Logger;
 /**
  * This class contains two methods for converting some amount of money.
  */
-
 public class PriceUtil {
-    private static final Logger log = Logger.getLogger(PriceUtil.class);
+    private static final Logger LOG = Logger.getLogger(PriceUtil.class);
 
     private PriceUtil(){}
 
@@ -18,9 +17,8 @@ public class PriceUtil {
      * @param   cents a {@code long} value. Amount in dollars.
      * @return  a {@code double} value. Amount in dollars.
      */
-
     public static double centsToDollars(long cents){
-        log.debug("method argument: cents = " + cents);
+        LOG.debug("method argument: cents = " + cents);
         return (double) cents / 100;
     }
 
@@ -31,9 +29,8 @@ public class PriceUtil {
      * @param dollars a {@code double} value. Amount in dollars and cents.
      * @return a {@code long} value. Amount in cents.
      */
-
     public static long dollarsToCents(double dollars){
-        log.debug("method argument: dollars =  " + dollars);
+        LOG.debug("method argument: dollars =  " + dollars);
         return (long) (dollars * 100);
     }
 }

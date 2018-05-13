@@ -13,7 +13,6 @@ import java.util.*;
  * In addition, contains constructor, getters and setters,
  * overrides toString, equals and hashCode methods.
  */
-
 public class Necklace {
     private String name;
 

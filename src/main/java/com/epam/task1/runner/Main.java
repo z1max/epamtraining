@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final Logger log = Logger.getLogger(Main.class);
+    private static final Logger LOG = Logger.getLogger(Main.class);
 
     private static final String HELP = "\nType 'create' to create new necklace;\n" +
                                         "\t 'list' to print all jewels in necklace;\n" +
@@ -33,21 +33,21 @@ public class Main {
         NecklaceUtil necklaceUtil = new NecklaceUtil();
 
         showHelp();
-        log.info("Waiting for user input...");
+        LOG.info("Waiting for user input...");
 
         while (!(inputLine = mainScanner.nextLine()).equals("exit")) {
-            log.debug("User input - " + inputLine);
+            LOG.debug("User input - " + inputLine);
             try {
                 Menu userIn = Menu.valueOf(inputLine.trim().toUpperCase());
 
                 if (userIn == Menu.CREATE){
-                        log.info("Enter name for new necklace:");
+                        LOG.info("Enter name for new necklace:");
                         String name = additionalScanner.nextLine();
 
                         necklace = new Necklace(name);
                         necklaceUtil.setNecklace(necklace);
 
-                        log.info("Necklace '" + name + "' created.");
+                        LOG.info("Necklace '" + name + "' created.");
                 }
                 if (userIn == Menu.HELP) {
                     showHelp();
@@ -56,52 +56,52 @@ public class Main {
                     printJewels(necklace.getJewels(), "Necklace has no jewels yet");
                 }
                 if (userIn == Menu.PRICE) {
-                    log.info("Summary price is "
+                    LOG.info("Summary price is "
                             + PriceUtil.centsToDollars(necklaceUtil.summaryPrice()) + "$");
                 }
                 if (userIn == Menu.WEIGHT) {
-                    log.info("Summary weight is " + necklaceUtil.summaryWeight() + " ct");
+                    LOG.info("Summary weight is " + necklaceUtil.summaryWeight() + " ct");
                 }
                 if (userIn == Menu.SORT) {
                     necklaceUtil.sortByPrice();
-                    log.info("Jewels sorted by price:");
+                    LOG.info("Jewels sorted by price:");
                     printJewels(necklace.getJewels(), "Necklace has no jewels.");
                 }
                 if (userIn == Menu.ADD) {
                     try {
-                        log.info("Type name and press enter:");
+                        LOG.info("Type name and press enter:");
                         String name = additionalScanner.nextLine();
 
-                        log.info("Type weight and press enter:");
+                        LOG.info("Type weight and press enter:");
                         double weight = additionalScanner.nextDouble();
 
-                        log.info("Type price in $ and press enter:");
+                        LOG.info("Type price in $ and press enter:");
                         long price = PriceUtil.dollarsToCents(additionalScanner.nextDouble());
 
-                        log.info("Type refractive index and type enter:");
+                        LOG.info("Type refractive index and type enter:");
                         double refractiveIndex = additionalScanner.nextDouble();
                         add(name, weight, price, refractiveIndex, necklace);
                     } catch (InputMismatchException ex) {
-                        log.error("Input data is incorrect!", ex);
+                        LOG.error("Input data is incorrect!", ex);
                     }
                 }
                 if (userIn == Menu.FIND) {
                     try {
-                        log.info("Type refractive index from value:");
+                        LOG.info("Type refractive index from value:");
                         double from = additionalScanner.nextDouble();
 
-                        log.info("Type refractive index to value:");
+                        LOG.info("Type refractive index to value:");
                         double to = additionalScanner.nextDouble();
                         find(from, to, necklaceUtil);
                     } catch (InputMismatchException ex) {
-                        log.error("Input data is incorrect!", ex);
+                        LOG.error("Input data is incorrect!", ex);
                     }
                 }
             } catch (IllegalArgumentException ex){
-                log.error("Input data is incorrect!", ex);
+                LOG.error("Input data is incorrect!", ex);
             }
 
-            log.info("Waiting for user input...");
+            LOG.info("Waiting for user input...");
         }
     }
 
@@ -109,7 +109,7 @@ public class Main {
         Jewel jewel = new Jewel(name, weight, price, refractiveIndex);
         necklace.addJewel(jewel);
 
-        log.info(jewel + " successfully added.");
+        LOG.info(jewel + " successfully added.");
     }
 
     private static void find(double from, double to, NecklaceUtil necklaceUtil) {
@@ -128,10 +128,10 @@ public class Main {
             sb.append(messageIfEmpty);
             sb.append("\n");
         }
-        log.info(sb);
+        LOG.info(sb);
     }
 
     private static void showHelp() {
-        log.info(HELP);
+        LOG.info(HELP);
     }
 }

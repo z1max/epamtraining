@@ -12,7 +12,6 @@ package com.epam.task1.model;
  * In addition, contains constructor, getters and setters,
  * overrides toString, equals and hashCode methods.
  */
-
 public class Jewel {
 
     private String name;
