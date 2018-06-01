@@ -1,8 +1,7 @@
-package com.emap.task1.util;
+package com.epam.task1.util;
 
 import com.epam.task1.model.Jewel;
 import com.epam.task1.model.Necklace;
-import com.epam.task1.util.NecklaceUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

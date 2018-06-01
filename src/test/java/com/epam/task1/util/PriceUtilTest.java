@@ -1,6 +1,5 @@
-package com.emap.task1.util;
+package com.epam.task1.util;
 
-import com.epam.task1.util.PriceUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
