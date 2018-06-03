@@ -5,13 +5,13 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Word implements TextUnit {
+public class CodeListing implements TextUnit {
     private String content;
-    private ResourceBundle bundle = PropertyResourceBundle.getBundle("task2/task2");
+    ResourceBundle bundle = PropertyResourceBundle.getBundle("task2/task2");
 
-    public Word(){}
+    public CodeListing(){}
 
-    public Word(String content) {
+    public CodeListing(String content) {
         this.content = content;
     }
 
@@ -21,11 +21,11 @@ public class Word implements TextUnit {
 
     @Override
     public TextUnit parse(String string) {
-        Pattern pattern = Pattern.compile(bundle.getString("regexp.word"));
+        Pattern pattern = Pattern.compile(bundle.getString("regexp.code"));
         Matcher matcher = pattern.matcher(string);
         TextUnitComposite composite = new TextUnitComposite();
         while(matcher.find()){
-            composite.add(new Word(string.substring(matcher.start(), matcher.end())));
+            composite.add(new CodeListing(string.substring(matcher.start(), matcher.end())));
         }
         return composite;
     }
