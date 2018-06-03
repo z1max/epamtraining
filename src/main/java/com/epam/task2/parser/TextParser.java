@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public class TextParser implements Parser {
 
     private Parser next;
-    ResourceBundle bundle = PropertyResourceBundle.getBundle("task2/task2");
+    ResourceBundle bundle = PropertyResourceBundle.getBundle("task2/regexp");
 
     public TextParser(Parser next) {
         this.next = next;
@@ -27,7 +27,7 @@ public class TextParser implements Parser {
         int start = 0;
         int end = string.length();
 
-        Pattern pattern = Pattern.compile(bundle.getString("regexp.code"));
+        Pattern pattern = Pattern.compile(bundle.getString("code"));
         Matcher matcher = pattern.matcher(string);
 
         TextUnitComposite composite = new TextUnitComposite();

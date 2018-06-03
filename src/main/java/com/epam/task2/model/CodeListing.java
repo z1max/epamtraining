@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class CodeListing implements TextUnit {
     private String content;
-    ResourceBundle bundle = PropertyResourceBundle.getBundle("task2/task2");
+    ResourceBundle bundle = PropertyResourceBundle.getBundle("task2/regexp");
 
     public CodeListing(){}
 
@@ -21,7 +21,7 @@ public class CodeListing implements TextUnit {
 
     @Override
     public TextUnit parse(String string) {
-        Pattern pattern = Pattern.compile(bundle.getString("regexp.code"));
+        Pattern pattern = Pattern.compile(bundle.getString("code"));
         Matcher matcher = pattern.matcher(string);
         TextUnitComposite composite = new TextUnitComposite();
         while(matcher.find()){

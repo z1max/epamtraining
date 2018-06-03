@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Word implements TextUnit {
     private String content;
-    private ResourceBundle bundle = PropertyResourceBundle.getBundle("task2/task2");
+    private ResourceBundle bundle = PropertyResourceBundle.getBundle("task2/regexp");
 
     public Word(){}
 
@@ -21,7 +21,7 @@ public class Word implements TextUnit {
 
     @Override
     public TextUnit parse(String string) {
-        Pattern pattern = Pattern.compile(bundle.getString("regexp.word"));
+        Pattern pattern = Pattern.compile(bundle.getString("word"));
         Matcher matcher = pattern.matcher(string);
         TextUnitComposite composite = new TextUnitComposite();
         while(matcher.find()){
