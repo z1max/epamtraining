@@ -1,0 +1,9 @@
+@RequestMapping(method=RequestMethod.GET)
+public List<Spittle> spittles(@RequestParam("max") long max, @RequestParam("count") int count) {
+    return spittleRepository.findSpittles(max, count);
+}
+Taking query parameters.
+
+One thing that your Spittr application will need to do is display a paged list of spittles. As it is, SpittleController only displays the most recent spittles; it offers no way to page back through the history of the spittles that have been written. If you’re going to let users go through spittle history a page at a time, you’ll need to offer a way for them to pass in parameters that determine which set of spittles to display.
+
+In deciding how to do this, consider that if you’re viewing a page of spittles, it’s ordered with the most recent spittle first. Therefore, the first spittle on the next page should have an ID that is before the ID of the last spittle on the current page. So, in order to display the next page of spittles, you should be able to pass in a spittle ID that is just less than the ID of the last spittle on the current page. You can also pass in a parameter saying how many spittles to display.
