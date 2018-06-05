@@ -1,8 +1,9 @@
 package com.epam.task2.parser;
 
-import com.epam.task2.model.CodeListing;
+import com.epam.task2.model.SimpleTextUnit;
 import com.epam.task2.model.TextUnit;
 import com.epam.task2.model.TextUnitComposite;
+import com.epam.task2.util.RegexpUtil;
 
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
@@ -12,7 +13,6 @@ import java.util.regex.Pattern;
 public class TextParser implements Parser {
 
     private Parser next;
-    ResourceBundle bundle = PropertyResourceBundle.getBundle("task2/regexp");
 
     public TextParser(Parser next) {
         this.next = next;
@@ -27,7 +27,7 @@ public class TextParser implements Parser {
         int start = 0;
         int end = string.length();
 
-        Pattern pattern = Pattern.compile(bundle.getString("code"));
+        Pattern pattern = Pattern.compile(RegexpUtil.getPattern("code"));
         Matcher matcher = pattern.matcher(string);
 
         TextUnitComposite composite = new TextUnitComposite();
@@ -42,7 +42,7 @@ public class TextParser implements Parser {
                 composite.add(next.parse(string.substring(start, startMatch)));
                 start = endMatch;
             }
-            composite.add(new CodeListing().parse(string.substring(startMatch, endMatch)));
+            composite.add(new SimpleTextUnit(string.substring(startMatch, endMatch)));
         }
 
         if (endMatch != -1 && endMatch != end){

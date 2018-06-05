@@ -1,16 +1,12 @@
 package com.epam.task2.util;
 
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TextUtil {
 
-    private ResourceBundle bundle = PropertyResourceBundle.getBundle("task2");
-
     public String excludeMaxLengthSubstring(String target, char startsWith, char endsWith){
-        Pattern sentencePattern = Pattern.compile(bundle.getString("regexp.sentence"));
+        Pattern sentencePattern = Pattern.compile(RegexpUtil.getPattern("sentence"));
         Matcher sentenceMatcher = sentencePattern.matcher(target);
         StringBuilder result = new StringBuilder();
         while(sentenceMatcher.find()){
