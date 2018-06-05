@@ -2,6 +2,7 @@ package com.epam.task2.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class TextUnitComposite implements TextUnit {
 
@@ -16,11 +17,9 @@ public class TextUnitComposite implements TextUnit {
     }
 
     @Override
-    public TextUnit parse(String string) {
-        TextUnitComposite result = new TextUnitComposite();
-        for (TextUnit next : children){
-            result.add(next.parse(string));
-        }
-        return result;
+    public String getContent() {
+        StringJoiner joiner = new StringJoiner(" ");
+        children.forEach(child -> joiner.add(child.getContent()));
+        return joiner.toString();
     }
 }
