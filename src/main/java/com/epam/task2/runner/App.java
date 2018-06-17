@@ -8,8 +8,11 @@ import com.epam.task2.parser.TextParser;
 import com.epam.task2.util.FileUtil;
 import com.epam.task2.util.RegexpUtil;
 import com.epam.task2.util.TextUtil;
+import org.apache.log4j.Logger;
 
-public class Main {
+public class App {
+
+    private final static Logger LOG = Logger.getLogger(App.class);
 
     public static void main(String[] args) {
         String paragraphPattern = RegexpUtil.getPattern("paragraph");
@@ -22,14 +25,14 @@ public class Main {
         String input = fileUtil.loadStringFromFile("/home/z1max/IdeaProjects/epamtraining/src/main/resources/task2/tmp.txt");
         TextUnit result =  root.parse(input);
 
-        System.out.println(result.getContent());
+        LOG.info(result.getContent());
 
         TextUtil textUtil = new TextUtil();
         String excludedMaxLengthSubstring = textUtil.excludeMaxLengthSubstring(input, 'a', 'b');
         String excludedWordsStartsWithConsonant = textUtil.excludeWordsStartsWithConsonant(input, 3);
 
-        System.out.println(excludedMaxLengthSubstring);
-        System.out.println(excludedWordsStartsWithConsonant);
+        LOG.info(excludedMaxLengthSubstring);
+        LOG.info(excludedWordsStartsWithConsonant);
 
     }
 }
