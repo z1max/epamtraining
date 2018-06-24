@@ -40,8 +40,8 @@ public class Customer implements Runnable {
         }
 
         this.currentTill.serve(this);
+        this.currentTill.removeFromLine(this);
     }
-
 
     private Till findBestTill(){
         return availableTills.stream()
