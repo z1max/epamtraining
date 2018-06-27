@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<necklace>
+    <name>Diamaq</name>
+    <jewels>
+        <jewel>
+            <name>Diamond</name>
+            <weight>0.5</weight>
+            <price>10000</price>
+            <refractive-index>2.418</refractive-index>
+        </jewel>
+        <jewel>
+            <name>Amethyst</name>
+            <weight>0.7</weight>
+            <price>60000</price>
+            <refractive-index>1.543</refractive-index>
+        </jewel>
+        <jewel>
+            <name>Aquamarine</name>
+            <weight>0.4</weight>
+            <price>70000</price>
+            <refractive-index>1.564</refractive-index>
+        </jewel>
+    </jewels>
+</necklace>
