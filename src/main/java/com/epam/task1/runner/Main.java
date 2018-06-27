@@ -1,9 +1,12 @@
 package com.epam.task1.runner;
 
+import com.epam.task1.parser.SAXNecklaceParser;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
@@ -17,6 +20,21 @@ public class Main {
 
     public static void main(String[] args) {
         validateXml("src/main/resources/task4/necklace.xsd", "src/main/resources/task4/necklace.xml");
+
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+
+        try {
+            javax.xml.parsers.SAXParser parser = factory.newSAXParser();
+            SAXNecklaceParser necklaceParser = new SAXNecklaceParser();
+            parser.parse("src/main/resources/task4/necklace.xml", necklaceParser);
+            System.out.println(necklaceParser.getNecklace());
+        } catch (ParserConfigurationException e) {
+            LOG.error("Parser error", e);
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            LOG.info("File not found", e);
+        }
     }
 
     private static void validateXml(String xsdPath, String xmlPath){
