@@ -23,6 +23,8 @@ public class Jewel {
 
     private double refractiveIndex;
 
+    public Jewel() {}
+
     public Jewel(String name){
         this.name = name;
     }

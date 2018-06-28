@@ -1,6 +1,9 @@
 package com.epam.task1.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * The {@code Necklace} class represents necklace
