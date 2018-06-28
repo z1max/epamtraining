@@ -1,9 +1,9 @@
-package com.epam.task1.runner;
+package com.epam.task4.runner;
 
-import com.epam.task1.model.Necklace;
-import com.epam.task1.parser.DOMParser;
-import com.epam.task1.parser.SAXNecklaceParser;
-import com.epam.task1.parser.StAXNecklaceParser;
+import com.epam.task4.model.Necklace;
+import com.epam.task4.parser.DOMParser;
+import com.epam.task4.parser.SAXNecklaceParser;
+import com.epam.task4.parser.StAXNecklaceParser;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;

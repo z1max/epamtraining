@@ -1,4 +1,4 @@
-package com.epam.task1.runner;
+package com.epam.task4.runner;
 
 public enum Menu {
     HELP,

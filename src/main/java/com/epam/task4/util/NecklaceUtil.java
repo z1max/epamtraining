@@ -1,7 +1,7 @@
-package com.epam.task1.util;
+package com.epam.task4.util;
 
-import com.epam.task1.model.Jewel;
-import com.epam.task1.model.Necklace;
+import com.epam.task4.model.Jewel;
+import com.epam.task4.model.Necklace;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -52,12 +52,7 @@ public class NecklaceUtil {
      */
     public void sortByPrice(){
         LOG.debug("Called for " + necklace);
-        necklace.getJewels().sort(new Comparator<Jewel>() {
-            @Override
-            public int compare(Jewel o1, Jewel o2) {
-                return Long.compare(o1.getPrice(), o2.getPrice());
-            }
-        });
+        necklace.getJewels().sort(Comparator.comparingLong(Jewel::getPrice));
     }
 
     /**

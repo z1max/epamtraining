@@ -1,4 +1,4 @@
-package com.epam.task1.model;
+package com.epam.task4.model;
 
 /**
  * The {@code Jewel} class represent a jewel.

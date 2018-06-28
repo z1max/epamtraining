@@ -1,8 +1,7 @@
-package com.epam.task1.model;
+package com.epam.task4.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -79,9 +78,7 @@ public class Necklace {
     public int hashCode() {
         int hash = 7;
         hash = 31 * hash + (name == null ? 0 : name.hashCode());
-        Iterator<Jewel> iterator = jewels.iterator();
-        while (iterator.hasNext()){
-            Jewel next = iterator.next();
+        for (Jewel next : jewels) {
             hash = 31 * hash + (next == null ? 0 : next.hashCode());
         }
         return hash;

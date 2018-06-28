@@ -1,7 +1,7 @@
-package com.epam.task1.parser;
+package com.epam.task4.parser;
 
-import com.epam.task1.model.Jewel;
-import com.epam.task1.model.Necklace;
+import com.epam.task4.model.Jewel;
+import com.epam.task4.model.Necklace;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
