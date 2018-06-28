@@ -1,6 +1,8 @@
 package com.epam.task1.runner;
 
+import com.epam.task1.model.Necklace;
 import com.epam.task1.parser.SAXNecklaceParser;
+import com.epam.task1.parser.StAXNecklaceParser;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
@@ -31,10 +33,13 @@ public class Main {
         } catch (ParserConfigurationException e) {
             LOG.error("Parser error", e);
         } catch (SAXException e) {
-            e.printStackTrace();
+            LOG.error("Error parsing file", e);
         } catch (IOException e) {
             LOG.info("File not found", e);
         }
+
+        Necklace necklace = new StAXNecklaceParser().parse("src/main/resources/task4/necklace.xml");
+        System.out.println(necklace);
     }
 
     private static void validateXml(String xsdPath, String xmlPath){
