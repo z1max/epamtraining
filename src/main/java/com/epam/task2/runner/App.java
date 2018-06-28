@@ -22,7 +22,7 @@ public class App {
                 new PatternParser(sentencePattern, new SentenceParser())));
 
         FileUtil fileUtil = new FileUtil();
-        String input = fileUtil.loadStringFromFile("/home/z1max/IdeaProjects/epamtraining/src/main/resources/task2/tmp.txt");
+        String input = fileUtil.loadStringFromFile("src/main/resources/task2/tmp.txt");
         TextUnit result =  root.parse(input);
 
         LOG.info(result.getContent());
